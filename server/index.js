@@ -22,6 +22,10 @@ app.post('/create-pdf', (req, res) => {
   });
 });
 
+app.get('/fetch-pdf', (req, res) => {
+  res.sendFile(`${__dirname / Resume.pdf}`);
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
