@@ -29,6 +29,9 @@ module.exports = ({
   edu2_desc,
   extra_1,
   extra_2,
+  extra_3,
+  extra_4,
+  extra_5,
 }) => {
   return `
         <!doctype html>
@@ -129,6 +132,9 @@ module.exports = ({
                   <ul>
                     <li><p class="lead"><b>Languages: </b>${extra_1} </p></li>
                     <li><p class="lead"><b>Hobbies: </b>${extra_2} </p></li>
+                    <li><p class="lead"><b>Hobbies: </b>${extra_3} </p></li>
+                    <li><p class="lead"><b>Hobbies: </b>${extra_4} </p></li>
+                    <li><p class="lead"><b>Hobbies: </b>${extra_5} </p></li>
                   </ul>
                   
             </div>
