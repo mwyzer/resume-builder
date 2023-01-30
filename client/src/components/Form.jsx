@@ -6,7 +6,7 @@ import PersonalDetails from './PersonalDetails';
 import Project from './Project';
 
 const Form = () => {
-  const [formData, setformData] = useState({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
@@ -57,7 +57,7 @@ const Form = () => {
 
   const PageDisplay = () => {
     if (page === 0) {
-      return <PersonalDetails />;
+      return <PersonalDetails formData={formData} setFormData={setFormData} />;
     } else if (page === 1) {
       return <Education />;
     } else if (page === 2) {
@@ -71,9 +71,12 @@ const Form = () => {
   return (
     <div>
       <h1 className='text-center'>Form</h1>
-      <div className='justify-content-center'>
+      <div className='d-flex justify-content-center'>
         <h1 className='text-center'>{FormTitle[page]}</h1>
-        <div>{PageDisplay()}</div>
+      </div>
+      <div>{PageDisplay()}</div>
+      <br />
+      <div className='d-flex justify-content-center'>
         <button
           disabled={page === 0}
           onClick={() => {
