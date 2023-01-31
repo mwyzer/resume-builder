@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import Education from './Education';
-import Experience from './Experience';
-import Extras from './Extras';
+import Experiences from './Experiences';
 import PersonalDetails from './PersonalDetails';
 import Project from './Project';
-
+import Extras from './Extras';
+import axios from 'axios';
+import { saveAs } from 'file-saver';
+import Success from './Success';
 const Form = () => {
+  const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,7 +23,7 @@ const Form = () => {
     exp1_dur: '',
     exp2_org: '',
     exp2_pos: '',
-    exp2_desc: '',
+    exp2_des: '',
     exp2_dur: '',
 
     proj1_title: '',
@@ -41,9 +44,6 @@ const Form = () => {
 
     extra_1: '',
     extra_2: '',
-    extra_3: '',
-    extra_4: '',
-    extra_5: '',
   });
 
   const [page, setPage] = useState(0);
@@ -59,25 +59,41 @@ const Form = () => {
     if (page === 0) {
       return <PersonalDetails formData={formData} setFormData={setFormData} />;
     } else if (page === 1) {
-      return <Education />;
+      return <Education formData={formData} setFormData={setFormData} />;
     } else if (page === 2) {
-      return <Experience />;
+      return <Experiences formData={formData} setFormData={setFormData} />;
     } else if (page === 3) {
-      return <Project />;
+      return <Project formData={formData} setFormData={setFormData} />;
     } else {
-      return <Extras />;
+      return <Extras formData={formData} setFormData={setFormData} />;
     }
   };
+
   return (
     <div>
-      <h1 className='text-center'>Form</h1>
       <div className='d-flex justify-content-center'>
         <h1 className='text-center'>{FormTitle[page]}</h1>
       </div>
+      <div className='progressbar'>
+        <div
+          style={{
+            width:
+              page === 0
+                ? '20%'
+                : page === 1
+                ? '40%'
+                : page === 2
+                ? '60%'
+                : page === 3
+                ? '80%'
+                : '100%',
+          }}
+        ></div>
+      </div>
       <div>{PageDisplay()}</div>
-      <br />
-      <div className='d-flex justify-content-center'>
+      <div className='d-flex justify-content-center gap-3 py-5'>
         <button
+          className='btn btn-dark'
           disabled={page === 0}
           onClick={() => {
             setPage((currPage) => currPage - 1);
@@ -86,14 +102,32 @@ const Form = () => {
           Prev
         </button>
         <button
-          disabled={page === 4}
+          className='btn btn-primary'
           onClick={() => {
-            setPage((currPage) => currPage + 1);
+            if (page === FormTitle.length - 1) {
+              axios
+                .post('http://localhost:4000/create-pdf', formData)
+                .then(() =>
+                  axios.get('http://localhost:4000/fetch-pdf', {
+                    responseType: 'blob',
+                  })
+                )
+                .then((res) => {
+                  const pdfBlob = new Blob([res.data], {
+                    type: 'application/pdf',
+                  });
+                  setSuccess(true && res.status === 200);
+                  saveAs(pdfBlob, 'Resume.pdf');
+                });
+            } else {
+              setPage((currPage) => currPage + 1);
+            }
           }}
         >
-          Next
+          {page === FormTitle.length - 1 ? 'Download Pdf' : 'Next'}
         </button>
       </div>
+      {success && <Success />}
     </div>
   );
 };
