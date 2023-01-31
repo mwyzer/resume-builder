@@ -14,91 +14,125 @@ const Education = ({ formData, setFormData }) => {
       <div classNameName='d-flex justify-content-center'>
         <form className='row g-3'>
           <div className='col-md-12'>
-            <label for='name' className='form-label'>
-              Name
+            <label for='school' className='form-label'>
+              Enter your first Institute name
             </label>
             <input
               type='name'
               className='form-control'
-              id='inputName'
-              value={formData.name}
+              id='inputSchool'
+              placeholder=''
+              value={formData.edu1_school}
               onChange={(e) => {
-                setFormData({ ...formData, name: e.target.value });
+                setFormData({ ...formData, edu1_school: e.target.value });
               }}
             />
           </div>
           <div className='col-md-12'>
-            <label for='email' className='form-label'>
-              Email
-            </label>
-            <input
-              type='email'
-              className='form-control'
-              id='inputEmail'
-              value={formData.email}
-              onChange={(e) => {
-                setFormData({ ...formData, email: e.target.value });
-              }}
-            />
-          </div>
-          <div className='col-md-12'>
-            <label for='inputPhone' className='form-label'>
-              Phone
+            <label for='year' className='form-label'>
+              Year you graduated
             </label>
             <input
               type='text'
               className='form-control'
-              id='inputPhone'
+              id='inputYear'
+              value={formData.edu1_year}
+              onChange={(e) => {
+                setFormData({ ...formData, edu1_year: e.target.value });
+              }}
+            />
+          </div>
+          <div className='col-md-12'>
+            <label for='inputQualification' className='form-label'>
+              Degree you pursued
+            </label>
+            <input
+              type='text'
+              className='form-control'
+              id='inputQualification'
               placeholder='1234 Main St'
-              value={formData.phone}
+              value={formData.edu1_qualification}
               onChange={(e) => {
-                setFormData({ ...formData, phone: e.target.value });
+                setFormData({
+                  ...formData,
+                  edu1_qualification: e.target.value,
+                });
               }}
             />
           </div>
           <div className='col-12'>
-            <label for='inputLinkedIn' className='form-label'>
-              LinkedIn
+            <label for='inputDescription' className='form-label'>
+              Description
             </label>
             <input
               type='text'
               className='form-control'
-              id='inputLinkedIn'
+              id='inputDescription'
               placeholder='Apartment, studio, or floor'
-              value={formData.linkedin}
+              value={formData.edu1_description}
               onChange={(e) => {
-                setFormData({ ...formData, github: e.target.value });
+                setFormData({ ...formData, edu1_description: e.target.value });
               }}
             />
           </div>
-
-          <div className='col-12'>
-            <label for='inputGithub' className='form-label'>
-              Github
+          <div className='col-md-12'>
+            <label for='school' className='form-label'>
+              School
+            </label>
+            <input
+              type='name'
+              className='form-control'
+              id='inputSchool2'
+              value={formData.edu2_school}
+              onChange={(e) => {
+                setFormData({ ...formData, edu2_school: e.target.value });
+              }}
+            />
+          </div>
+          <div className='col-md-12'>
+            <label for='year' className='form-label'>
+              Year
             </label>
             <input
               type='text'
               className='form-control'
-              id='inputGithub'
-              placeholder='Apartment, studio, or floor'
-              value={formData.github}
+              id='inputYear2'
+              value={formData.year}
               onChange={(e) => {
-                setFormData({ ...formData, github: e.target.value });
+                setFormData({ ...formData, edu2_year: e.target.value });
+              }}
+            />
+          </div>
+          <div className='col-md-12'>
+            <label for='inputQualification' className='form-label'>
+              Qualification
+            </label>
+            <input
+              type='text'
+              className='form-control'
+              id='inputQualification2'
+              placeholder='1234 Main St'
+              value={formData.edu2_qualification}
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  edu2_qualification: e.target.value,
+                });
               }}
             />
           </div>
           <div className='col-12'>
-            <label for='inputSkills' className='form-label'>
-              Skills
+            <label for='inputDescription2' className='form-label'>
+              Description
             </label>
             <input
               type='text'
               className='form-control'
-              id='inputSkills'
+              id='inputDescription2'
               placeholder='Apartment, studio, or floor'
-              value={formData.skills}
+              value={formData.edu2_description}
               onChange={(e) => {
-                setFormData({ ...formData, skills: e.target.value });
+                setFormData({ ...formData, edu2_description: e.target.value });
               }}
             />
           </div>

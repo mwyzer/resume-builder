@@ -30,7 +30,7 @@ const PersonalDetails = ({ formData, setFormData }) => {
               Email
             </label>
             <input
-              type='email'
+              type='text'
               className='form-control'
               id='inputEmail'
               value={formData.email}
